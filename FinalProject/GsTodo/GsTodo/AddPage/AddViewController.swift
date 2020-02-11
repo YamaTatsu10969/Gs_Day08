@@ -15,7 +15,8 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var memoTextView: UITextView!
-    
+    @IBOutlet weak var imageView: UIImageView!
+
     // 判定に使用するプロパティ
     var selectIndex: Int?
     
@@ -82,6 +83,27 @@ class AddViewController: UIViewController {
         // 前の画面に戻る
         navigationController?.popViewController(animated: true)
     }
+
+    @IBAction func tapImageView(_ sender: Any) {
+        print("🌞 imageView をタップしたよ")
+        // アクションシートを表示する
+        let alertSheet = UIAlertController(title: nil, message: "選択してください", preferredStyle: .actionSheet)
+        let cameraAction = UIAlertAction(title: "カメラで撮影", style: .default) { action in
+            print("カメラが選択されました")
+        }
+        let albumAction = UIAlertAction(title: "アルバムから選択", style: .default) { action in
+            print("アルバムが選択されました")
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { action in
+            print("キャンセルが選択されました")
+        }
+        alertSheet.addAction(cameraAction)
+        alertSheet.addAction(albumAction)
+        alertSheet.addAction(cancelAction)
+
+        present(alertSheet, animated: true)
+    }
+
         
     #warning("他のViewController でも使えるように、UIViewController の Extension にする")
 
