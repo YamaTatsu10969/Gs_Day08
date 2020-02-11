@@ -71,7 +71,20 @@ class AddViewController: UIViewController {
             editTask.title = title
             editTask.memo = memoTextView.text
             editTask.updatedAt = Timestamp()
-            TaskCollection.shared.editTask(task: editTask, index: index)
+            if isSetImage {
+                TaskCollection.shared.saveImage(image: imageView.image) { (imageName) in
+                    guard let imageName = imageName else {
+                        HUD.flash(.labeledError(title: nil, subtitle: "👿 保存に失敗しました"), delay: 1)
+                        return
+                    }
+                    editTask.imageName = imageName
+                    TaskCollection.shared.editTask(task: editTask, index: index)
+                    print("🌞保存に成功したよ")
+                }
+            } else {
+                TaskCollection.shared.editTask(task: editTask, index: index)
+            }
+
         } else {
             // Add
             let task = TaskCollection.shared.createTask()
