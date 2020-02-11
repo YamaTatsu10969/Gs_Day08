@@ -19,6 +19,7 @@ class AddViewController: UIViewController {
 
     // 判定に使用するプロパティ
     var selectIndex: Int?
+    var isSetImage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +77,19 @@ class AddViewController: UIViewController {
             let task = TaskCollection.shared.createTask()
             task.title = title
             task.memo = memoTextView.text
-            TaskCollection.shared.addTask(task)
+            if isSetImage {
+                TaskCollection.shared.saveImage(image: imageView.image) { (imageName) in
+                    guard let imageName = imageName else {
+                        HUD.flash(.labeledError(title: nil, subtitle: "👿 保存に失敗しました"), delay: 1)
+                        return
+                    }
+                    task.imageName = imageName
+                    TaskCollection.shared.addTask(task)
+                    print("🌞保存に成功したよ")
+                }
+            } else {
+                TaskCollection.shared.addTask(task)
+            }
         }
         
         HUD.flash(.success, delay: 0.3)
@@ -128,7 +141,8 @@ extension AddViewController: UINavigationControllerDelegate, UIImagePickerContro
 
         if let pickedImage = info[.originalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
-            imageView.image = pickedImage
+            imageView.image = pickedImage.resize(toWidth: 300)
+            isSetImage = true
         }
         // 表示した画面を閉じる処理
         picker.dismiss(animated: true, completion: nil)

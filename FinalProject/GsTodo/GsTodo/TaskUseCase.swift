@@ -10,10 +10,15 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class TaskUseCase {
+    // Firestore へのアクセスに使う
     let db = Firestore.firestore()
-    
+    // Storage へのアクセスに使う
+    let storage = Storage.storage()
+
+    //MARK: Firestore
     private func getCollectionRef () -> CollectionReference {
         guard let uid = Auth.auth().currentUser?.uid else {
             fatalError ("Uidを取得出来ませんでした。") //本番環境では使わない
@@ -78,4 +83,41 @@ class TaskUseCase {
             callback(tasks)
         }
     }
+
+    //MARK: Storage
+
+    func getStorageReference() -> StorageReference? {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return nil
+        }
+        return storage.reference().child("users").child(uid)
+    }
+
+    func saveImage(image: UIImage?, callback: @escaping ((String?) -> Void)) {
+        // オプショナルを外したり、 iamgeData を作成
+        guard let image = image,
+            let imageData = image.jpegData(compressionQuality: 0.5),
+            let imageRef = getStorageReference() else {
+            callback(nil)
+            return
+        }
+
+        // 保存に必要なものを作成
+        let imageName = NSUUID().uuidString
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+
+        // 保存する
+        let ref = imageRef.child("\(imageName).jpg")
+        ref.putData(imageData, metadata: metaData) { (metaData, error) in
+            guard let _ = metaData else {
+                print("画像の保存に失敗しました。。。")
+                callback(nil)
+                return
+            }
+            print("画像の保存が成功した！！！！！！")
+            callback(imageName)
+        }
+    }
+
 }

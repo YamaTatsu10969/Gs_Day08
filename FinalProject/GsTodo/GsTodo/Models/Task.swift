@@ -15,6 +15,7 @@ class Task: Codable {
     var id: String
     var title: String = ""
     var memo: String = ""
+    var imageName: String?
     var createdAt: Timestamp
     var updatedAt: Timestamp
     

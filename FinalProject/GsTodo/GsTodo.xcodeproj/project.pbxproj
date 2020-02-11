@@ -15,6 +15,7 @@
 		671E88B623E3004D00B2A61B /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 671E88B423E3004D00B2A61B /* TermsViewController.xib */; };
 		6729EC2323DFF5AB00D31593 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6729EC2223DFF5AB00D31593 /* GoogleService-Info.plist */; };
 		6729EC2523DFF8F000D31593 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6729EC2423DFF8F000D31593 /* UIViewController+.swift */; };
+		6761095A23F257A2004C9A09 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6761095923F257A2004C9A09 /* UIImage+.swift */; };
 		67D7683323EDAA9C006F29AF /* TaskUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D7683223EDAA9C006F29AF /* TaskUseCase.swift */; };
 		67E03F9723CEC75400B8220F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E03F9623CEC75400B8220F /* AppDelegate.swift */; };
 		67E03F9923CEC75400B8220F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E03F9823CEC75400B8220F /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 		671E88B423E3004D00B2A61B /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		6729EC2223DFF5AB00D31593 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6729EC2423DFF8F000D31593 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		6761095923F257A2004C9A09 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		67D7683223EDAA9C006F29AF /* TaskUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskUseCase.swift; sourceTree = "<group>"; };
 		67E03F9323CEC75400B8220F /* GsTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GsTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67E03F9623CEC75400B8220F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				6729EC2423DFF8F000D31593 /* UIViewController+.swift */,
+				6761095923F257A2004C9A09 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				67093E4223DF1419008F7549 /* LoginViewController.swift in Sources */,
 				67E03FAC23CEC8DD00B8220F /* AddViewController.swift in Sources */,
 				67166CA223D0419F008EF0CA /* CustomCell.swift in Sources */,
+				6761095A23F257A2004C9A09 /* UIImage+.swift in Sources */,
 				67E03F9923CEC75400B8220F /* SceneDelegate.swift in Sources */,
 				6729EC2523DFF8F000D31593 /* UIViewController+.swift in Sources */,
 			);

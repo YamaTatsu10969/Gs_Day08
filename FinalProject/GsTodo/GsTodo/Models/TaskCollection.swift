@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol TaskCollectionDelegate: class {
     func saved()
@@ -63,6 +64,16 @@ class TaskCollection {
         taskUseCase.removeTask(taskId: tasks[index].id)
         tasks.remove(at: index)
         save()
+    }
+
+    func saveImage(image: UIImage?, callback: @escaping ((String?) -> Void)) {
+        taskUseCase.saveImage(image: image) { (imageName) in
+            guard let imageName = imageName else {
+                callback(nil)
+                return
+            }
+            callback(imageName)
+        }
     }
 
 
