@@ -51,68 +51,36 @@ class AddViewController: UIViewController {
         let rightButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(tapSaveButton))
         navigationItem.rightBarButtonItem = rightButtonItem
     }
-    
-    
-    // MARK: Other Method
+
+    // MARK: Action Method
     @objc func tapSaveButton() {
         print("Saveボタンを押したよ！")
-        
-        guard let title = titleTextField.text else {
-            return
-        }
-        
+        guard let title = titleTextField.text else {return}
         if title.isEmpty {
             print(title, "👿titleが空っぽだぞ〜")
-            
             HUD.flash(.labeledError(title: nil, subtitle: "👿 タイトルが入力されていません！！！"), delay: 1)
-            // showAlert("👿 タイトルが入力されていません！！！")
             return // return を実行すると、このメソッドの処理がここで終了する。
         }
-        
-        // ここで Edit か Add　かを判定している
-        if let index = selectIndex {
-            // Edit
-            let editTask = TaskCollection.shared.getTask(at: index)
-            editTask.title = title
-            editTask.memo = memoTextView.text
-            editTask.updatedAt = Timestamp()
-            if isSetImage {
-                TaskCollection.shared.saveImage(image: imageView.image) { (imageName) in
-                    guard let imageName = imageName else {
-                        HUD.flash(.labeledError(title: nil, subtitle: "👿 保存に失敗しました"), delay: 1)
-                        return
-                    }
-                    editTask.imageName = imageName
-                    TaskCollection.shared.editTask(task: editTask, index: index)
-                    print("🌞保存に成功したよ")
-                }
-            } else {
-                TaskCollection.shared.editTask(task: editTask, index: index)
-            }
 
-        } else {
-            // Add
-            let task = TaskCollection.shared.createTask()
-            task.title = title
-            task.memo = memoTextView.text
-            if isSetImage {
-                TaskCollection.shared.saveImage(image: imageView.image) { (imageName) in
-                    guard let imageName = imageName else {
-                        HUD.flash(.labeledError(title: nil, subtitle: "👿 保存に失敗しました"), delay: 1)
-                        return
-                    }
-                    task.imageName = imageName
-                    TaskCollection.shared.addTask(task)
-                    print("🌞保存に成功したよ")
-                }
-            } else {
-                TaskCollection.shared.addTask(task)
-            }
+        var tmpTask = TaskCollection.shared.createTask()
+        if let index = selectIndex {
+            tmpTask = TaskCollection.shared.getTask(at: index)
         }
-        
-        HUD.flash(.success, delay: 0.3)
-        // 前の画面に戻る
-        navigationController?.popViewController(animated: true)
+        tmpTask.title = title
+        tmpTask.memo = memoTextView.text
+        if isSetImage {
+            TaskCollection.shared.saveImage(image: imageView.image) { (imageName) in
+                guard let imageName = imageName else {
+                    HUD.flash(.labeledError(title: nil, subtitle: "👿 保存に失敗しました"), delay: 1)
+                    return
+                }
+                tmpTask.imageName = imageName
+                self.saveTask(tmpTask)
+                print("🌞保存に成功したよ")
+            }
+        } else {
+            saveTask(tmpTask)
+        }
     }
 
     @IBAction func tapImageView(_ sender: Any) {
@@ -135,6 +103,20 @@ class AddViewController: UIViewController {
         alertSheet.addAction(cancelAction)
 
         present(alertSheet, animated: true)
+    }
+
+    // MARK: Private Method
+    private func saveTask(_ task: Task) {
+        // ここで Edit か Add　かを判定している
+        if let index = selectIndex {
+            task.updatedAt = Timestamp()
+            TaskCollection.shared.editTask(task: task, index: index)
+        } else {
+            TaskCollection.shared.addTask(task)
+        }
+        HUD.flash(.success, delay: 0.3)
+        // 前の画面に戻る
+        navigationController?.popViewController(animated: true)
     }
 
 }
