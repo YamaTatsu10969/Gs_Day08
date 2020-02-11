@@ -159,7 +159,7 @@
 				6729EC2223DFF5AB00D31593 /* GoogleService-Info.plist */,
 				67E03F9623CEC75400B8220F /* AppDelegate.swift */,
 				67E03F9823CEC75400B8220F /* SceneDelegate.swift */,
-				67D7683223EDAA9C006F29AF /* TaskUseCase.swift */,
+				67F208AF23F29BB600BE2770 /* UseCase */,
 				6729EC2623DFF8F400D31593 /* Extension */,
 				678EAB9023CF034E00FE4177 /* Models */,
 				675B63BD23CF040F00F9A5AC /* TaskListPage */,
@@ -171,6 +171,14 @@
 				67E03FA423CEC75700B8220F /* Info.plist */,
 			);
 			path = GsTodo;
+			sourceTree = "<group>";
+		};
+		67F208AF23F29BB600BE2770 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				67D7683223EDAA9C006F29AF /* TaskUseCase.swift */,
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		7A398DBD47E21BBB0405245F /* Frameworks */ = {
