@@ -90,9 +90,11 @@ class AddViewController: UIViewController {
         let alertSheet = UIAlertController(title: nil, message: "選択してください", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "カメラで撮影", style: .default) { action in
             print("カメラが選択されました")
+            self.presentPicker(sourceType: .camera)
         }
         let albumAction = UIAlertAction(title: "アルバムから選択", style: .default) { action in
             print("アルバムが選択されました")
+            self.presentPicker(sourceType: .photoLibrary)
         }
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { action in
             print("キャンセルが選択されました")
@@ -104,9 +106,31 @@ class AddViewController: UIViewController {
         present(alertSheet, animated: true)
     }
 
-        
-    #warning("他のViewController でも使えるように、UIViewController の Extension にする")
-
-    
 }
 
+extension AddViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+    func presentPicker(sourceType: UIImagePickerController.SourceType) {
+        print("撮影画面かアルバム画面を表示するよ！")
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let picker = UIImagePickerController()
+            picker.sourceType = sourceType
+            picker.delegate = self
+            present(picker, animated: true)
+        } else {
+            print("SourceType が見つかりませんでした。。。")
+        }
+    }
+
+    // 撮影もしくは画像を選択したら呼ばれる
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("撮影もしくは画像を選択したよ！")
+
+        if let pickedImage = info[.originalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = pickedImage
+        }
+        // 表示した画面を閉じる処理
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
