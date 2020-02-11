@@ -9,6 +9,7 @@
 import UIKit
 import PKHUD
 import FirebaseFirestore
+import FirebaseUI
 
 class AddViewController: UIViewController {
     
@@ -31,6 +32,10 @@ class AddViewController: UIViewController {
             title = "編集"
             titleTextField.text = TaskCollection.shared.getTask(at: index).title
             memoTextView.text = TaskCollection.shared.getTask(at: index).memo
+            if let imageName = TaskCollection.shared.getTask(at: index).imageName,
+                let ref = TaskCollection.shared.getImageRef(imageName: imageName) {
+                imageView.sd_setImage(with: ref)
+            }
         }
     }
     

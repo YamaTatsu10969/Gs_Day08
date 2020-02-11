@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
 
 protocol TaskCollectionDelegate: class {
     func saved()
@@ -43,6 +44,10 @@ class TaskCollection {
     func getTask (at: Int) -> Task{
         return tasks[at]
     }
+
+    func getImageRef(imageName: String) -> StorageReference? {
+        return taskUseCase.getImageRef(imageName: imageName)
+    }
     
     func taskCount () -> Int{
         return tasks.count
@@ -61,7 +66,7 @@ class TaskCollection {
     }
     
     func removeTask(index: Int) {
-        taskUseCase.removeTask(taskId: tasks[index].id)
+        taskUseCase.removeTask(tasks[index])
         tasks.remove(at: index)
         save()
     }

@@ -56,12 +56,13 @@ class TaskUseCase {
         }
     }
     
-    func removeTask(taskId: String){
-        let documentRef = getCollectionRef().document(taskId)
+    func removeTask(_ task: Task){
+        let documentRef = getCollectionRef().document(task.id)
         documentRef.delete { (err) in
             if let _err = err {
                 print("データ取得",_err)
             } else {
+                self.deleteImage(imageName: task.imageName)
                 print("データ削除成功")
             }
         }
@@ -93,6 +94,10 @@ class TaskUseCase {
         return storage.reference().child("users").child(uid)
     }
 
+    func getImageRef(imageName: String) -> StorageReference? {
+        return getStorageReference()?.child(imageName)
+    }
+
     func saveImage(image: UIImage?, callback: @escaping ((String?) -> Void)) {
         // オプショナルを外したり、 iamgeData を作成
         guard let image = image,
@@ -108,15 +113,26 @@ class TaskUseCase {
         metaData.contentType = "image/jpeg"
 
         // 保存する
-        let ref = imageRef.child("\(imageName).jpg")
+        let ref = imageRef.child(imageName)
         ref.putData(imageData, metadata: metaData) { (metaData, error) in
             guard let _ = metaData else {
-                print("画像の保存に失敗しました。。。")
+                print("画像の保存に失敗しました。。。😭")
                 callback(nil)
                 return
             }
             print("画像の保存が成功した！！！！！！")
             callback(imageName)
+        }
+    }
+
+    func deleteImage(imageName: String?) {
+        guard let imageName = imageName, let ref = getImageRef(imageName: imageName) else { return }
+        ref.delete { (error) in
+            if let error = error {
+                print("画像の削除に失敗しました。。。😭", error)
+            } else {
+                print("画像の削除が成功した！！！！！！")
+            }
         }
     }
 
