@@ -56,10 +56,10 @@ class LoginViewController: UIViewController {
     func emailSignUp(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-//                print ("👿登録失敗:\(error.localizedDescription)")
+                print ("👿登録失敗:\(error.localizedDescription)")
                 self.signUpErrorAlert(error)
             } else {
-//                print ("🌞登録成功")
+                print ("🌞登録成功")
                 self.presentTaskListPage()
             }
         }
@@ -68,10 +68,10 @@ class LoginViewController: UIViewController {
     func emailLogIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
-//                print ("👿ログイン失敗")
+                print ("👿ログイン失敗")
                 self.logInErrorAlert(error)
             } else {
-//                print ("🌞ログイン成功")
+                print ("🌞ログイン成功")
                 self.presentTaskListPage()
             }
         }
