@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="GsTodo" customModuleProvider="target">
+            <connections>
+                <outlet property="emailTextField" destination="U6T-Is-Hnp" id="KBx-Do-rG7"/>
+                <outlet property="passwordTextField" destination="Exs-pk-th5" id="Znz-jT-JXh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレスを入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U6T-Is-Hnp">
+                    <rect key="frame" x="32" y="108" width="350" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワードを入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Exs-pk-th5">
+                    <rect key="frame" x="32" y="174" width="350" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Ahn-Zh-NBj">
+                    <rect key="frame" x="32" y="433" width="350" height="30"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oct-e7-jD3">
+                            <rect key="frame" x="0.0" y="0.0" width="159" height="30"/>
+                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="新規登録"/>
+                            <connections>
+                                <action selector="tapSignUpButton:" destination="-1" eventType="touchUpInside" id="OvW-dP-gCE"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVw-D5-gsE">
+                            <rect key="frame" x="191" y="0.0" width="159" height="30"/>
+                            <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="ログイン"/>
+                            <connections>
+                                <action selector="tapLogInButton:" destination="-1" eventType="touchUpInside" id="c4h-2S-aAA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-q9-ABe">
+                    <rect key="frame" x="176" y="768" width="62" height="30"/>
+                    <state key="normal" title="利用規約"/>
+                    <connections>
+                        <action selector="tapTermsButton:" destination="-1" eventType="touchUpInside" id="4wO-ZX-fMl"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Exs-pk-th5" secondAttribute="trailing" constant="32" id="21k-HR-p6g"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="U6T-Is-Hnp" secondAttribute="trailing" constant="32" id="9g9-6s-PNi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hzi-q9-ABe" secondAttribute="bottom" constant="64" id="Bfg-nY-mNd"/>
+                <constraint firstItem="U6T-Is-Hnp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="64" id="Qtc-Jr-G7N"/>
+                <constraint firstItem="U6T-Is-Hnp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="S5k-Tv-dEl"/>
+                <constraint firstItem="Ahn-Zh-NBj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SoK-mr-a59"/>
+                <constraint firstItem="Exs-pk-th5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="lZV-C0-Aif"/>
+                <constraint firstItem="hzi-q9-ABe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oeW-sA-hn3"/>
+                <constraint firstItem="Exs-pk-th5" firstAttribute="top" secondItem="U6T-Is-Hnp" secondAttribute="bottom" constant="32" id="rCQ-UT-lbl"/>
+                <constraint firstItem="Ahn-Zh-NBj" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ueL-of-CQj"/>
+                <constraint firstItem="Ahn-Zh-NBj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="ysQ-aM-qzQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ahn-Zh-NBj" secondAttribute="trailing" constant="32" id="zKh-ov-KDK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="131"/>
+        </view>
+    </objects>
+</document>
